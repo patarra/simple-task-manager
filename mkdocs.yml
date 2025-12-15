@@ -4,7 +4,7 @@ site_author: patarra
 site_url: https://patarra.github.io/simple-task-manager/
 
 repo_name: patarra/simple-task-manager
-repo_url: https://github.com/patarra/sync-calendars
+repo_url: https://github.com/patarra/simple-task-manager
 edit_uri: edit/main/docs/
 
 theme:
@@ -73,4 +73,4 @@ nav:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/patarra/sync-calendars
+      link: https://github.com/patarra/simple-task-manager
