@@ -34,14 +34,20 @@ class TaskScheduler:
         # Create log directory if it doesn't exist
         log_file.parent.mkdir(parents=True, exist_ok=True)
 
+        # Clear any existing handlers to avoid duplicates
+        root_logger = logging.getLogger()
+        for handler in root_logger.handlers[:]:
+            root_logger.removeHandler(handler)
+
         # Configure logging
+        # Note: Only use FileHandler, not StreamHandler, to avoid duplicates
+        # when running as a launchd daemon (launchd already redirects stdout to the log file)
         logging.basicConfig(
             level=logging.INFO,
             format='[%(asctime)s] %(levelname)s: %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S',
             handlers=[
-                logging.FileHandler(log_file),
-                logging.StreamHandler(sys.stdout)
+                logging.FileHandler(log_file)
             ]
         )
         self.logger = logging.getLogger(__name__)

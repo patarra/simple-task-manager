@@ -13,4 +13,4 @@ else
 fi
 
 # Execute the calendar sync script with all arguments
-python "$SCRIPT_DIR/sync-calendar.py" "$@"
+"$SCRIPT_DIR/.venv/bin/python" "$SCRIPT_DIR/sync-calendar.py" "$@"

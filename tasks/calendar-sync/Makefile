@@ -33,14 +33,6 @@ help:
 	@echo "  make test                 - Run the script with default parameters (7 days)"
 	@echo "  make run ARGS=...         - Run the script with custom arguments"
 	@echo ""
-	@echo "$(GREEN)Service Management:$(RESET)"
-	@echo "  make service-start        - Start the background service"
-	@echo "  make service-stop         - Stop the background service"
-	@echo "  make service-restart      - Restart the background service"
-	@echo "  make service-status       - Show service status"
-	@echo "  make service-logs         - Show service logs"
-	@echo "  make uninstall-service    - Uninstall the background service"
-	@echo ""
 	@echo "$(GREEN)Cleanup:$(RESET)"
 	@echo "  make clean                - Remove Python cache files"
 	@echo "  make clean-venv           - Remove virtual environment"
@@ -81,7 +73,7 @@ test: install
 		exit 1; \
 	fi
 	@echo "Testing Calendar Sync (fetching next 7 days)..."
-	@$(PYTHON) read_twilio_calendar.py --days 7
+	@$(PYTHON) sync-calendar.py --days 7
 
 run: install
 	@if [ "$(UNAME_S)" != "Darwin" ]; then \
@@ -89,57 +81,7 @@ run: install
 		exit 1; \
 	fi
 	@echo "Running Calendar Sync..."
-	@$(PYTHON) read_twilio_calendar.py $(ARGS)
-
-# Start the service (deprecated - use central scheduler)
-service-start:
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo "$(YELLOW)⚠️  DEPRECATED: This task is now managed by the central scheduler$(RESET)"
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo ""
-	@echo "Use these commands from the repository root:"
-	@echo "  $(CYAN)make install-service$(RESET)  # Install scheduler service"
-	@echo "  $(CYAN)make service-start$(RESET)    # Start scheduler"
-
-# Stop the service (deprecated - use central scheduler)
-service-stop:
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo "$(YELLOW)⚠️  DEPRECATED: This task is now managed by the central scheduler$(RESET)"
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo ""
-	@echo "Use: $(CYAN)make service-stop$(RESET) (from repository root)"
-
-# Restart the service (deprecated - use central scheduler)
-service-restart:
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo "$(YELLOW)⚠️  DEPRECATED: This task is now managed by the central scheduler$(RESET)"
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo ""
-	@echo "Use: $(CYAN)make service-restart$(RESET) (from repository root)"
-
-# Show service status (deprecated - use central scheduler)
-service-status:
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo "$(YELLOW)⚠️  DEPRECATED: This task is now managed by the central scheduler$(RESET)"
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo ""
-	@echo "Use: $(CYAN)make service-status$(RESET) (from repository root)"
-
-# Show service logs (deprecated - use central scheduler)
-service-logs:
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo "$(YELLOW)⚠️  DEPRECATED: This task is now managed by the central scheduler$(RESET)"
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo ""
-	@echo "Use: $(CYAN)make service-logs$(RESET) (from repository root)"
-
-# Uninstall the service (deprecated - use central scheduler)
-uninstall-service:
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo "$(YELLOW)⚠️  DEPRECATED: This task is now managed by the central scheduler$(RESET)"
-	@echo "$(YELLOW)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)"
-	@echo ""
-	@echo "Use: $(CYAN)make uninstall-service$(RESET) (from repository root)"
+	@$(PYTHON) sync-calendar.py $(ARGS)
 
 clean:
 	@echo "Cleaning Python cache files..."

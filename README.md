@@ -10,6 +10,8 @@ Lightweight task scheduler with cron-based scheduling for personal automation on
 
 📚 **[View Full Documentation](https://patarra.github.io/simple-task-manager/)**
 
+> **Note:** This is a personal project, primarily built for my own use. It is provided as-is, without any warranty or guarantee. Use at your own risk.
+
 ## Quick Start
 
 **Installation:**

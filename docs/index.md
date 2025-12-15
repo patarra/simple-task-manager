@@ -12,6 +12,9 @@ A centralized YAML-configured task scheduler for macOS and Linux periodic tasks.
 - **⏱️ Cron Scheduling**: Standard cron expressions for flexible scheduling
 - **📝 Centralized Logging**: All task executions logged in one place
 
+!!! info "Personal Project"
+    This is a personal project, primarily built for my own use. It is provided as-is, without any warranty or guarantee. Use at your own risk.
+
 ## Architecture Overview
 
 ```

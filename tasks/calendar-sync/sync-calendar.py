@@ -83,7 +83,7 @@ def get_event_unique_id(event):
     return hashlib.md5(unique_string.encode()).hexdigest()
 
 
-def get_todays_events(calendar_name="jfelguerarodriguez@twilio.com", date_from=None, date_to=None, exclude_declined=False, exclude_all_day=False, force_sync=False, exclude_title_patterns=None, return_store=False):
+def get_todays_events(calendar_name="Personal", date_from=None, date_to=None, exclude_declined=False, exclude_all_day=False, force_sync=False, exclude_title_patterns=None, return_store=False):
     """
     Fetch events from the specified calendar within a date range.
     Much faster than AppleScript because it uses EventKit's native predicates.
@@ -434,8 +434,8 @@ def main():
         '--source-calendar',
         '--calendar',
         type=str,
-        default='jfelguerarodriguez@twilio.com',
-        help='Source calendar name to sync from (default: jfelguerarodriguez@twilio.com)'
+        default='Personal',
+        help='Source calendar name to sync from (default: Personal)'
     )
 
     args = parser.parse_args()

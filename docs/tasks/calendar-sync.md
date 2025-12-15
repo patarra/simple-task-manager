@@ -55,13 +55,6 @@ Source calendar name to read events from.
 
 **Default:** `Personal`
 
-Find your calendar names:
-
-```bash
-cd tasks/calendar-sync
-.venv/bin/python list_calendars.py
-```
-
 ### `--days N`
 
 Number of days from today to sync.
@@ -243,14 +236,6 @@ Omit `--do-sync` to see what would be synced:
 ./run.sh --source-calendar "work@company.com" --days 30
 ```
 
-### Force Calendar Refresh
-
-Use `--force-sync` if calendar data seems stale:
-
-```bash
-./run.sh --force-sync --do-sync "Personal"
-```
-
 ### Multiple Sync Jobs
 
 Run different sync configs for different calendars:
@@ -274,8 +259,7 @@ tasks:
 
 See `tasks/calendar-sync/` for implementation:
 
-- `read_twilio_calendar.py` - Main sync script
-- `list_calendars.py` - List available calendars
+- `sync-calendar.py` - Main sync script
 - `run.sh` - Entry point
 
 ## Related
