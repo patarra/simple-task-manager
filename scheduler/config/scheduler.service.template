@@ -1,0 +1,15 @@
+[Unit]
+Description=Task Scheduler
+After=network.target
+
+[Service]
+Type=simple
+ExecStart={{REPO_ROOT}}/scheduler/.venv/bin/python {{REPO_ROOT}}/scheduler/scheduler.py
+WorkingDirectory={{REPO_ROOT}}
+Restart=on-failure
+RestartSec=10
+StandardOutput=append:{{LOG_DIR}}/scheduler.log
+StandardError=append:{{LOG_DIR}}/scheduler.error.log
+
+[Install]
+WantedBy=default.target

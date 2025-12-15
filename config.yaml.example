@@ -1,0 +1,35 @@
+# Task Scheduler Configuration
+#
+# This file defines all periodic tasks and their schedules.
+# Each task must provide a run.sh script in its directory.
+
+# Global scheduler settings
+scheduler:
+  log_file: ~/Library/Logs/scheduler.log
+  default_timeout: 300  # 5 minutes (used if task doesn't specify timeout)
+
+# Task definitions
+tasks:
+  # Calendar synchronization task
+  - name: calendar-sync
+    path: tasks/calendar-sync
+    cron: "*/30 * * * *"  # Every 30 minutes
+    args:
+      - "--source-calendar"
+      - "jfelguerarodriguez@twilio.com"
+      - "--days"
+      - "30"
+      - "--exclude-declined-events"
+      - "--exclude-all-day-events"
+      - "--do-sync"
+      - "Personal"
+    timeout: 600  # 10 minutes
+    enabled: true
+
+  # Example: Add more tasks here
+  # - name: backup-photos
+  #   path: tasks/backup-photos
+  #   cron: "0 2 * * *"  # Daily at 2 AM
+  #   args: []
+  #   timeout: 3600
+  #   enabled: false
